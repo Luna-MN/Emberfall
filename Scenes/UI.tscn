@@ -3,14 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="1_rpk06"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="2_qdy4t"]
 [ext_resource type="Script" path="res://Scripts/Money.cs" id="3_ks8bp"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxkkv"]
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
-albedo_color = Color(1, 1, 0, 1)
+[ext_resource type="Script" path="res://Scripts/Mana.cs" id="4_g1btl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_amajq"]
-material = SubResource("StandardMaterial3D_gxkkv")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_gskfv"]
 
@@ -24,6 +19,7 @@ material = SubResource("StandardMaterial3D_gxkkv")
 script = ExtResource("1_rpk06")
 maxHealth = 100.0
 money = 100
+maxMana = 100.0
 
 [node name="Health" type="Node" parent="."]
 
@@ -47,7 +43,7 @@ length = 20.0
 [node name="Currency" type="Node" parent="."]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Currency"]
-position = Vector2(1091, 46)
+position = Vector2(1092, 47)
 scale = Vector2(45.051, 42.7571)
 mesh = SubResource("SphereMesh_amajq")
 texture = SubResource("CanvasTexture_gskfv")
@@ -71,3 +67,25 @@ virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 script = ExtResource("3_ks8bp")
 Ui = NodePath("../..")
+
+[node name="Mana" type="Node2D" parent="." node_paths=PackedStringArray("Ui", "manaBar")]
+script = ExtResource("4_g1btl")
+Ui = NodePath("..")
+manaBar = NodePath("Gauge/Gauge bar")
+manaWidth = 140.0
+manaLength = 20.0
+
+[node name="Gauge" type="Node" parent="Mana"]
+
+[node name="Background" type="ColorRect" parent="Mana/Gauge"]
+offset_left = 28.0
+offset_top = 570.0
+offset_right = 188.0
+offset_bottom = 610.0
+
+[node name="Gauge bar" type="ColorRect" parent="Mana/Gauge"]
+offset_left = 38.0
+offset_top = 580.0
+offset_right = 178.0
+offset_bottom = 600.0
+color = Color(0.223529, 1, 1, 1)
