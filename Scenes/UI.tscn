@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0qlmw1p1fvdc"]
+
+[ext_resource type="Script" path="res://Scripts/UI.cs" id="1_rpk06"]
+[ext_resource type="Script" path="res://Scripts/Health.cs" id="2_qdy4t"]
+[ext_resource type="Script" path="res://Scripts/Money.cs" id="3_ks8bp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxkkv"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_amajq"]
+material = SubResource("StandardMaterial3D_gxkkv")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gskfv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51m7w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7oh6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rnrg"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_rpk06")
+maxHealth = 100.0
+money = 100
+
+[node name="Health" type="Node" parent="."]
+
+[node name="Background" type="ColorRect" parent="Health"]
+offset_left = 28.0
+offset_top = 23.0
+offset_right = 148.0
+offset_bottom = 63.0
+
+[node name="Health bar" type="ColorRect" parent="Health" node_paths=PackedStringArray("Ui")]
+offset_left = 37.0
+offset_top = 33.0
+offset_right = 137.0
+offset_bottom = 53.0
+color = Color(0, 0.670588, 0, 1)
+script = ExtResource("2_qdy4t")
+Ui = NodePath("../..")
+width = 100.0
+length = 20.0
+
+[node name="Currency" type="Node" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Currency"]
+position = Vector2(1091, 46)
+scale = Vector2(45.051, 42.7571)
+mesh = SubResource("SphereMesh_amajq")
+texture = SubResource("CanvasTexture_gskfv")
+
+[node name="TextEdit" type="TextEdit" parent="Currency" node_paths=PackedStringArray("Ui")]
+offset_left = 1017.0
+offset_top = 30.0
+offset_right = 1072.0
+offset_bottom = 69.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_51m7w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7oh6q")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_7rnrg")
+text = "6969"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+script = ExtResource("3_ks8bp")
+Ui = NodePath("../..")
