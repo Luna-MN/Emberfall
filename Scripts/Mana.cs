@@ -12,6 +12,11 @@ public partial class Mana : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (!(Ui.playerClass == UI.classes.Mana))
+		{
+			Visible = false;
+
+		}
 		manaBar.Size = new Vector2(manaWidth, manaLength);
 		Ui.currentMana = Ui.maxMana;
 	}

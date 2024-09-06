@@ -19,6 +19,7 @@
 script = ExtResource("1_rpk06")
 maxHealth = 100.0
 money = 100
+playerClass = 2
 maxMana = 100.0
 
 [node name="Health" type="Node" parent="."]
@@ -75,7 +76,7 @@ manaBar = NodePath("Gauge/Gauge bar")
 manaWidth = 140.0
 manaLength = 20.0
 
-[node name="Gauge" type="Node" parent="Mana"]
+[node name="Gauge" type="Node2D" parent="Mana"]
 
 [node name="Background" type="ColorRect" parent="Mana/Gauge"]
 offset_left = 28.0
