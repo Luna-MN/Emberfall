@@ -14,5 +14,7 @@ public partial class UI : Node2D
 	[Export]
 	public float maxMana, currentMana;
 
+	// fury class stuff
+	public float maxFury, currentFury;
 
 }

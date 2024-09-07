@@ -6,6 +6,7 @@ public partial class Mana : Node2D
 	[Export]
 	public UI Ui;
 	[Export]
+
 	public ColorRect manaBar;
 	[Export]
 	public float manaWidth, manaLength;
