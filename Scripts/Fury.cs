@@ -12,13 +12,13 @@ public partial class Fury : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (!(Ui.playerClass == UI.classes.Mana))
+		if (!(Ui.playerClass == UI.classes.Fury))
 		{
 			Visible = false;
 
 		}
 		furyBar.Size = new Vector2(furyWidth, furyLength);
-		Ui.currentFury = Ui.maxFury;
+		Ui.currentFury = 0;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

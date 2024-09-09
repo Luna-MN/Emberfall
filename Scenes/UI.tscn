@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0qlmw1p1fvdc"]
+[gd_scene load_steps=12 format=3 uid="uid://d0qlmw1p1fvdc"]
 
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="1_rpk06"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="2_qdy4t"]
 [ext_resource type="Script" path="res://Scripts/Money.cs" id="3_ks8bp"]
 [ext_resource type="Script" path="res://Scripts/Mana.cs" id="4_g1btl"]
+[ext_resource type="Script" path="res://Scripts/Fury.cs" id="5_lp7of"]
+[ext_resource type="Script" path="res://Scripts/Momentum.cs" id="6_6f8p8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_amajq"]
 
@@ -19,8 +21,10 @@
 script = ExtResource("1_rpk06")
 maxHealth = 100.0
 money = 100
-playerClass = 2
+playerClass = 3
 maxMana = 100.0
+maxFury = 100.0
+maxMomentum = 100.0
 
 [node name="Health" type="Node" parent="."]
 
@@ -83,6 +87,7 @@ offset_left = 28.0
 offset_top = 570.0
 offset_right = 188.0
 offset_bottom = 610.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Gauge bar" type="ColorRect" parent="Mana/Gauge"]
 offset_left = 38.0
@@ -90,3 +95,50 @@ offset_top = 580.0
 offset_right = 178.0
 offset_bottom = 600.0
 color = Color(0.223529, 1, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Fury" type="Node2D" parent="." node_paths=PackedStringArray("Ui", "furyBar")]
+script = ExtResource("5_lp7of")
+Ui = NodePath("..")
+furyBar = NodePath("Gauge/Gauge bar")
+furyWidth = 140.0
+furyLength = 20.0
+
+[node name="Gauge" type="Node2D" parent="Fury"]
+
+[node name="Background" type="ColorRect" parent="Fury/Gauge"]
+offset_left = 29.0
+offset_top = 569.0
+offset_right = 189.0
+offset_bottom = 609.0
+
+[node name="Gauge bar" type="ColorRect" parent="Fury/Gauge"]
+offset_left = 35.0
+offset_top = 580.0
+offset_right = 181.0
+offset_bottom = 600.0
+color = Color(0.733333, 0.254902, 0, 1)
+
+[node name="Momentum" type="Node2D" parent="." node_paths=PackedStringArray("Ui", "momentumBar")]
+script = ExtResource("6_6f8p8")
+Ui = NodePath("..")
+momentumBar = NodePath("Gauge/Gauge bar")
+momentumWidth = 140.0
+momentumLength = 20.0
+
+[node name="Gauge" type="Node2D" parent="Momentum"]
+
+[node name="Background" type="ColorRect" parent="Momentum/Gauge"]
+offset_left = 28.0
+offset_top = 570.0
+offset_right = 188.0
+offset_bottom = 610.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar" type="ColorRect" parent="Momentum/Gauge"]
+offset_left = 38.0
+offset_top = 580.0
+offset_right = 178.0
+offset_bottom = 600.0
+color = Color(1, 1, 0.0627451, 1)
+metadata/_edit_use_anchors_ = true
