@@ -21,5 +21,31 @@ public partial class UI : Node2D
 	// momentum class stuff
 	[Export]
 	public float maxMomentum, currentMomentum;
+	// shadow class stuff
+	[Export]
+	public Shadow shadow;
+	private int currentShadowLocal = 0;
+	[Export]
+	public int currentShadow
+	{
+		get
+		{
+			return currentShadowLocal;
+		}
+		set
+		{
+			currentShadowLocal += value;
+			GD.Print(currentShadowLocal);
+			if (currentShadowLocal < 0)
+			{
+				currentShadowLocal = 0;
+			}
+			if (currentShadowLocal > shadow.shadowRects.Length - 1)
+			{
+				currentShadowLocal = shadow.shadowRects.Length - 1;
+			}
+			shadow.updateShadowRects(currentShadowLocal);
+		}
+	}
 
 }

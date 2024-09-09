@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0qlmw1p1fvdc"]
+[gd_scene load_steps=13 format=3 uid="uid://d0qlmw1p1fvdc"]
 
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="1_rpk06"]
 [ext_resource type="Script" path="res://Scripts/Health.cs" id="2_qdy4t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Mana.cs" id="4_g1btl"]
 [ext_resource type="Script" path="res://Scripts/Fury.cs" id="5_lp7of"]
 [ext_resource type="Script" path="res://Scripts/Momentum.cs" id="6_6f8p8"]
+[ext_resource type="Script" path="res://Scripts/Shadow.cs" id="7_cxrrm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_amajq"]
 
@@ -17,14 +18,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rnrg"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("shadow")]
 script = ExtResource("1_rpk06")
 maxHealth = 100.0
 money = 100
-playerClass = 3
 maxMana = 100.0
 maxFury = 100.0
 maxMomentum = 100.0
+shadow = NodePath("Shadow")
 
 [node name="Health" type="Node" parent="."]
 
@@ -107,10 +108,10 @@ furyLength = 20.0
 [node name="Gauge" type="Node2D" parent="Fury"]
 
 [node name="Background" type="ColorRect" parent="Fury/Gauge"]
-offset_left = 29.0
-offset_top = 569.0
-offset_right = 189.0
-offset_bottom = 609.0
+offset_left = 28.0
+offset_top = 570.0
+offset_right = 188.0
+offset_bottom = 610.0
 
 [node name="Gauge bar" type="ColorRect" parent="Fury/Gauge"]
 offset_left = 35.0
@@ -141,4 +142,72 @@ offset_top = 580.0
 offset_right = 178.0
 offset_bottom = 600.0
 color = Color(1, 1, 0.0627451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Shadow" type="Node2D" parent="." node_paths=PackedStringArray("shadowRects", "Ui")]
+script = ExtResource("7_cxrrm")
+shadowRects = [NodePath("Gauge/Gauge bar"), NodePath("Gauge/Gauge bar2"), NodePath("Gauge/Gauge bar3"), NodePath("Gauge/Gauge bar4"), NodePath("Gauge/Gauge bar5"), NodePath("Gauge/Gauge bar6")]
+Ui = NodePath("..")
+
+[node name="Gauge" type="Node2D" parent="Shadow"]
+
+[node name="Background" type="ColorRect" parent="Shadow/Gauge"]
+offset_left = 27.0
+offset_top = 570.0
+offset_right = 187.0
+offset_bottom = 610.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 38.0
+offset_top = 580.0
+offset_right = 58.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar2" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 63.0
+offset_top = 580.0
+offset_right = 83.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar3" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 88.0
+offset_top = 580.0
+offset_right = 108.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar4" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 112.0
+offset_top = 580.0
+offset_right = 132.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar5" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 135.0
+offset_top = 580.0
+offset_right = 155.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Gauge bar6" type="ColorRect" parent="Shadow/Gauge"]
+visible = false
+offset_left = 159.0
+offset_top = 580.0
+offset_right = 179.0
+offset_bottom = 600.0
+color = Color(0.227451, 0.423529, 0, 1)
 metadata/_edit_use_anchors_ = true
