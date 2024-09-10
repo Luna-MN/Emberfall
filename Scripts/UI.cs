@@ -35,14 +35,13 @@ public partial class UI : Node2D
 		set
 		{
 			currentShadowLocal += value;
-			GD.Print(currentShadowLocal);
-			if (currentShadowLocal < 0)
+			if (currentShadowLocal <= 0)
 			{
 				currentShadowLocal = 0;
 			}
-			if (currentShadowLocal > shadow.shadowRects.Length - 1)
+			if (currentShadowLocal >= shadow.shadowRects.Length)
 			{
-				currentShadowLocal = shadow.shadowRects.Length - 1;
+				currentShadowLocal = shadow.shadowRects.Length;
 			}
 			shadow.updateShadowRects(currentShadowLocal);
 		}

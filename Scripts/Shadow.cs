@@ -22,43 +22,22 @@ public partial class Shadow : Node2D
 	{
 		if (Input.IsKeyPressed(Key.Minus))
 		{
-			Ui.currentShadow -= 1;
+			Ui.currentShadow = -1;
 		}
 		if (Input.IsKeyPressed(Key.Equal))
 		{
-			Ui.currentShadow += 1;
+			Ui.currentShadow = 1;
 		}
 	}
 	public void updateShadowRects(int i)
 	{
-		GD.Print(i);
-
-		if (oldI == i - 1 && i < shadowRects.Length - 1 && i > 0)
+		for (int x = 0; x < i; x++)
 		{
-			shadowRects[i].Visible = true;
-			oldI = i;
+			shadowRects[x].Visible = true;
 		}
-		else if (oldI == i + 1 && i < shadowRects.Length - 1 && i > 0)
+		for (int x = i; x < shadowRects.Length; x++)
 		{
-			shadowRects[i].Visible = false;
-			oldI = i;
-		}
-
-		else if (oldI < i && i < shadowRects.Length - 1 && i > 0)
-		{
-			for (int x = oldI - i; x < i; x++)
-			{
-				shadowRects[x].Visible = true;
-			}
-			oldI = i;
-		}
-		else if (oldI > i && i < shadowRects.Length - 1 && i > 0)
-		{
-			for (int x = i; x < oldI - i; x++)
-			{
-				shadowRects[x].Visible = false;
-			}
-			oldI = i;
+			shadowRects[x].Visible = false;
 		}
 
 	}
