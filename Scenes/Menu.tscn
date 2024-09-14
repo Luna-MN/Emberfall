@@ -2,8 +2,24 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Button" type="Button" parent="."]
-offset_left = 466.0
-offset_top = 179.0
-offset_right = 661.0
-offset_bottom = 238.0
+[node name="Start" type="Button" parent="."]
+offset_left = 495.0
+offset_top = 129.0
+offset_right = 690.0
+offset_bottom = 188.0
+text = "Start"
+
+[node name="Settings" type="Button" parent="."]
+offset_left = 495.0
+offset_top = 213.0
+offset_right = 690.0
+offset_bottom = 272.0
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 495.0
+offset_top = 297.0
+offset_right = 690.0
+offset_bottom = 356.0
+text = "Quit
+"
