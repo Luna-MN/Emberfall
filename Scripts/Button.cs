@@ -5,6 +5,8 @@ public partial class Button : Godot.Button
 {
 	[Export]
 	public PackedScene Scene;
+	[Export]
+	public Node2D currentScene;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -17,6 +19,8 @@ public partial class Button : Godot.Button
 	}
 	public override void _Pressed()
 	{
-		Scene.Instantiate();
+		Node2D SI = Scene.Instantiate<Node2D>();
+		GetTree().Root.AddChild(SI);
+		currentScene.QueueFree();
 	}
 }
