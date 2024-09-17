@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg1bi6sqskgmo"]
+
+[ext_resource type="Script" path="res://Scripts/Button.cs" id="1_po4cn"]
+[ext_resource type="PackedScene" uid="uid://cqujgjtc8stp8" path="res://Scenes/Menu.tscn" id="2_m62f5"]
+
+[node name="Start" type="Node2D"]
+
+[node name="Save1" type="Button" parent="."]
+offset_left = 450.0
+offset_top = 106.0
+offset_right = 724.0
+offset_bottom = 179.0
+text = "New Save"
+
+[node name="Save2" type="Button" parent="."]
+offset_left = 450.0
+offset_top = 202.0
+offset_right = 724.0
+offset_bottom = 275.0
+text = "New Save"
+
+[node name="Save3" type="Button" parent="."]
+offset_left = 454.0
+offset_top = 307.0
+offset_right = 728.0
+offset_bottom = 380.0
+text = "New Save"
+
+[node name="Save4" type="Button" parent="."]
+offset_left = 455.0
+offset_top = 413.0
+offset_right = 729.0
+offset_bottom = 486.0
+text = "New Save"
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("currentScene")]
+offset_left = 45.0
+offset_top = 26.0
+offset_right = 98.0
+offset_bottom = 77.0
+text = "X"
+script = ExtResource("1_po4cn")
+Scene = ExtResource("2_m62f5")
+currentScene = NodePath("..")

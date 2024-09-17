@@ -18,7 +18,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rnrg"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("shadow")]
+[node name="UI" type="Node2D" node_paths=PackedStringArray("shadow")]
 script = ExtResource("1_rpk06")
 maxHealth = 100.0
 money = 100

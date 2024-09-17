@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqujgjtc8stp8"]
+[gd_scene load_steps=5 format=3 uid="uid://cqujgjtc8stp8"]
 
 [ext_resource type="Script" path="res://Scripts/Button.cs" id="1_akhxc"]
-[ext_resource type="PackedScene" uid="uid://bg1bi6sqskgmo" path="res://Start.tscn" id="2_ivfwq"]
+[ext_resource type="PackedScene" uid="uid://bg1bi6sqskgmo" path="res://Scenes/Start.tscn" id="2_q87xu"]
+[ext_resource type="PackedScene" uid="uid://cu04gpvajrken" path="res://Scenes/Settings.tscn" id="3_j15d1"]
+[ext_resource type="Script" path="res://Scripts/Quit.cs" id="4_0rsl7"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Menu" type="Node2D"]
 
 [node name="Start" type="Button" parent="." node_paths=PackedStringArray("currentScene")]
 offset_left = 495.0
@@ -12,15 +14,18 @@ offset_right = 690.0
 offset_bottom = 188.0
 text = "Start"
 script = ExtResource("1_akhxc")
-Scene = ExtResource("2_ivfwq")
+Scene = ExtResource("2_q87xu")
 currentScene = NodePath("..")
 
-[node name="Settings" type="Button" parent="."]
+[node name="Settings" type="Button" parent="." node_paths=PackedStringArray("currentScene")]
 offset_left = 495.0
 offset_top = 213.0
 offset_right = 690.0
 offset_bottom = 272.0
 text = "Settings"
+script = ExtResource("1_akhxc")
+Scene = ExtResource("3_j15d1")
+currentScene = NodePath("..")
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 495.0
@@ -29,3 +34,4 @@ offset_right = 690.0
 offset_bottom = 356.0
 text = "Quit
 "
+script = ExtResource("4_0rsl7")
