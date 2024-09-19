@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg0kb54lfijp4"]
-
-[ext_resource type="PackedScene" uid="uid://cqujgjtc8stp8" path="res://Scenes/Menu.tscn" id="1_kw50d"]
-
-[node name="Main" type="Node2D"]
-
-[node name="Menu" parent="." instance=ExtResource("1_kw50d")]
-position = Vector2(-1, -1)

@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba28j548j3bxl"]
+
+[ext_resource type="Script" path="res://Scripts/Button.cs" id="1_08gta"]
+[ext_resource type="Script" path="res://Scripts/Quit.cs" id="2_67y3r"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Main Menu" type="Node2D" parent="."]
+
+[node name="Start" type="Button" parent="Main Menu" node_paths=PackedStringArray("Scene", "currentScene")]
+offset_left = 483.0
+offset_top = 190.0
+offset_right = 682.0
+offset_bottom = 239.0
+scale = Vector2(0.990132, 0.98967)
+text = "Start"
+script = ExtResource("1_08gta")
+Scene = NodePath("../../Start")
+currentScene = NodePath("..")
+
+[node name="Settings" type="Button" parent="Main Menu" node_paths=PackedStringArray("Scene", "currentScene")]
+offset_left = 483.0
+offset_top = 255.0
+offset_right = 680.0
+offset_bottom = 303.0
+text = "Settings
+"
+script = ExtResource("1_08gta")
+Scene = NodePath("../../Settings")
+currentScene = NodePath("..")
+
+[node name="Quit" type="Button" parent="Main Menu"]
+offset_left = 480.0
+offset_top = 320.0
+offset_right = 679.0
+offset_bottom = 368.0
+text = "Quit"
+script = ExtResource("2_67y3r")
+
+[node name="Start" type="Node2D" parent="."]
+visible = false
+
+[node name="Save1" type="Button" parent="Start"]
+offset_left = 483.0
+offset_top = 190.0
+offset_right = 682.0
+offset_bottom = 239.0
+scale = Vector2(0.990132, 0.98967)
+text = "Save1"
+script = ExtResource("1_08gta")
+
+[node name="Save2" type="Button" parent="Start"]
+offset_left = 482.57
+offset_top = 254.335
+offset_right = 681.569
+offset_bottom = 303.336
+scale = Vector2(0.990132, 0.98967)
+text = "Save2"
+script = ExtResource("1_08gta")
+
+[node name="Save3" type="Button" parent="Start"]
+offset_left = 482.57
+offset_top = 319.53
+offset_right = 681.569
+offset_bottom = 368.531
+scale = Vector2(0.990132, 0.98967)
+text = "Save3
+"
+script = ExtResource("1_08gta")
+
+[node name="X" type="Button" parent="Start" node_paths=PackedStringArray("Scene", "currentScene")]
+offset_left = 41.0
+offset_top = 20.0
+offset_right = 94.0
+offset_bottom = 69.0
+scale = Vector2(1.035, 1.035)
+text = "X"
+script = ExtResource("1_08gta")
+Scene = NodePath("../../Main Menu")
+currentScene = NodePath("..")
+
+[node name="Settings" type="Node2D" parent="."]
+visible = false
+
+[node name="X" type="Button" parent="Settings" node_paths=PackedStringArray("Scene", "currentScene")]
+offset_left = 41.0
+offset_top = 20.0
+offset_right = 94.0
+offset_bottom = 69.0
+scale = Vector2(1.035, 1.035)
+text = "X"
+script = ExtResource("1_08gta")
+Scene = NodePath("../../Main Menu")
+currentScene = NodePath("../../Start")

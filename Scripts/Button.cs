@@ -4,7 +4,7 @@ using System;
 public partial class Button : Godot.Button
 {
 	[Export]
-	public PackedScene Scene;
+	public Node2D Scene;
 	[Export]
 	public Node2D currentScene;
 	// Called when the node enters the scene tree for the first time.
@@ -19,8 +19,7 @@ public partial class Button : Godot.Button
 	}
 	public override void _Pressed()
 	{
-		Node2D SI = Scene.Instantiate<Node2D>();
-		GetTree().Root.AddChild(SI);
-		currentScene.QueueFree();
+		Scene.Visible = true;
+		currentScene.Visible = false;
 	}
 }
