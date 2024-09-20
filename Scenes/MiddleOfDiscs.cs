@@ -21,6 +21,9 @@ public partial class MiddleOfDiscs : Node3D
 	private float angle = 0.0f;
 	private float radius = 1.0f;
 	public bool pressed = false;
+	private Vector3 targetPosition;
+	private float moveSpeed = 2.0f;
+	private float lt = 0.0f;
 
 	// ray tracing
 	private Godot.Collections.Dictionary rayA;
@@ -42,13 +45,13 @@ public partial class MiddleOfDiscs : Node3D
 		// move balls
 		if (!pressed)
 		{
-			Position = character.Position;
+			targetPosition = character.Position;
 		}
 		else
 		{
-			Position = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
+			targetPosition = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
 		}
-
+		MoveBallsTowardsTarget((float)delta);
 		// ball follows mouse on click
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 		{
@@ -75,6 +78,12 @@ public partial class MiddleOfDiscs : Node3D
 
 		// Rotate Ball3
 		Balls[2].Position = new Vector3(radius * Mathf.Cos(angle + 4 * Mathf.Pi / 3), 0, radius * Mathf.Sin(angle + 4 * Mathf.Pi / 3));
+	}
+
+	private void MoveBallsTowardsTarget(float delta)
+	{
+		// Move Ball1 towards the target position
+		LinearInterpolate(targetPosition, moveSpeed * delta);
 	}
 
 	// ray tracing
@@ -112,5 +121,9 @@ public partial class MiddleOfDiscs : Node3D
 				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 			}
 		}
+	}
+	public void LinearInterpolate(Vector3 b, float t)
+	{
+		Position = Position.Lerp(b, t);
 	}
 }
