@@ -72,6 +72,7 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		// Move Ball1 towards the target position
 		LinearInterpolate(targetPosition, moveSpeed * delta);
+		// element throw check
 		if (Position == targetPosition)
 		{
 			elementThrow = false;
@@ -104,6 +105,7 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
+			// element change
 			if (Input.IsKeyPressed(Key.F))
 			{
 				foreach (var Ball in Balls)
@@ -115,11 +117,13 @@ public partial class MiddleOfDiscs : Node3D
 		}
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
+			// disc follow mouse
 			if (Input.IsMouseButtonPressed(MouseButton.Left))
 			{
 				pressed = !pressed;
 				moveSpeed = pressed ? 2.0f : 100.0f;
 			}
+			// disc throw
 			if (Input.IsMouseButtonPressed(MouseButton.Right) && pressed == false)
 			{
 				targetPosition = Position + (ScreenPointToRay() - Position).Normalized() * 6.0f;
