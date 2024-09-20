@@ -113,21 +113,12 @@ public partial class MiddleOfDiscs : Node3D
 		{
 			if (Input.IsMouseButtonPressed(MouseButton.Left))
 			{
-
-				if (pressed)
-				{
-					pressed = false;
-					moveSpeed = 100.0f;
-				}
-				else if (pressed == false)
-				{
-					pressed = true;
-					moveSpeed = 2.0f;
-				}
+				pressed = !pressed;
+				moveSpeed = pressed ? 2.0f : 100.0f;
 			}
 			if (Input.IsMouseButtonPressed(MouseButton.Right) && pressed == false)
 			{
-
+				targetPosition = Position + ((ScreenPointToRay() - Position).Normalized()) * 6.0f;
 			}
 		}
 	}
