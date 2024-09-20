@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://cu887c0e8660k"]
+
+[ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
+[ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
+[ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="3_xrjcv"]
+[ext_resource type="Material" uid="uid://bcmvx237h18fd" path="res://Flame.tres" id="4_ulcbs"]
+[ext_resource type="Material" uid="uid://ccb81foqt187v" path="res://Ice.tres" id="5_fp0sa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_128b0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xqkon"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b252u"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hq5e8"]
+material = ExtResource("3_xrjcv")
+radius = 0.37
+height = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_os8ty"]
+material = ExtResource("4_ulcbs")
+radius = 0.37
+height = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_th6i2"]
+material = ExtResource("5_fp0sa")
+radius = 0.37
+height = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
+albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uuwh7"]
+material = SubResource("StandardMaterial3D_s8mfr")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ymu5c"]
+size = Vector3(100, 0.1, 100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Character" type="CharacterBody3D" parent="."]
+script = ExtResource("1_1uxls")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+shape = SubResource("CapsuleShape3D_128b0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+mesh = SubResource("CapsuleMesh_xqkon")
+
+[node name="Camera3D" type="Camera3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 0, 5.75746, 6.35999)
+fov = 90.0
+
+[node name="cube (not important)" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+mesh = SubResource("BoxMesh_b252u")
+
+[node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
+script = ExtResource("2_q3p7w")
+Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
+character = NodePath("../Character")
+material = Array[Material]([ExtResource("4_ulcbs"), ExtResource("5_fp0sa"), ExtResource("3_xrjcv")])
+
+[node name="Lightning" type="MeshInstance3D" parent="Middle of discs"]
+mesh = SubResource("SphereMesh_hq5e8")
+
+[node name="Flame" type="MeshInstance3D" parent="Middle of discs"]
+mesh = SubResource("SphereMesh_os8ty")
+
+[node name="Ice" type="MeshInstance3D" parent="Middle of discs"]
+mesh = SubResource("SphereMesh_th6i2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
+mesh = SubResource("PlaneMesh_uuwh7")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("BoxShape3D_ymu5c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 6)
