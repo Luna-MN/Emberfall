@@ -109,11 +109,7 @@ public partial class MiddleOfDiscs : Node3D
 				{
 					Ball.Mesh.SurfaceSetMaterial(0, material[matNum]);
 				}
-				matNum = (matNum + 1);
-				if (matNum == 3)
-				{
-					matNum = 0;
-				}
+				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 			}
 		}
 	}

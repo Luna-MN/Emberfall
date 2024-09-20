@@ -18,12 +18,12 @@ radius = 0.37
 height = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_os8ty"]
-material = ExtResource("4_ulcbs")
+material = ExtResource("3_xrjcv")
 radius = 0.37
 height = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_th6i2"]
-material = ExtResource("5_fp0sa")
+material = ExtResource("3_xrjcv")
 radius = 0.37
 height = 0.7
 
