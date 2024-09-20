@@ -3,21 +3,31 @@ using System;
 
 public partial class MiddleOfDiscs : Node3D
 {
+	// balls
 	[Export]
 	public MeshInstance3D[] Balls;
+
+	// character
 	[Export]
 	public CharacterBody3D character;
+
+	//material
 	[Export]
 	public Material[] material;
-	private float rotationSpeed = 1.0f; // Speed of rotation
-	private float angle = 0.0f; // Current angle of rotation
-	private float radius = 1.0f; // Radius of the circle
+	private int matNum = 1;
+
+	// ball handling
+	private float rotationSpeed = 1.0f;
+	private float angle = 0.0f;
+	private float radius = 1.0f;
 	public bool pressed = false;
+
+	// ray tracing
 	private Godot.Collections.Dictionary rayA;
 	private PhysicsDirectSpaceState3D spaceState;
 	private Vector2 mousePos;
 	private Camera3D cam;
-	private int matNum = 1;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,7 +37,9 @@ public partial class MiddleOfDiscs : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Rotate the balls
 		RotateBalls((float)delta);
+		// move balls
 		if (!pressed)
 		{
 			Position = character.Position;
@@ -37,7 +49,7 @@ public partial class MiddleOfDiscs : Node3D
 			Position = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
 		}
 
-
+		// ball follows mouse on click
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 		{
 			pressed = true;
@@ -85,6 +97,8 @@ public partial class MiddleOfDiscs : Node3D
 			return (Vector3)rayA["position"];
 		return new Vector3(0, 0, 0);
 	}
+
+	// this is just so it only detects on press
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
