@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=16 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
 [ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
@@ -11,6 +11,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xqkon"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b252u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7q67"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hq5e8"]
 material = ExtResource("3_xrjcv")
@@ -56,6 +58,11 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
 mesh = SubResource("BoxMesh_b252u")
 
+[node name="Area3D" type="Area3D" parent="cube (not important)"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube (not important)/Area3D"]
+shape = SubResource("BoxShape3D_h7q67")
+
 [node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
 script = ExtResource("2_q3p7w")
 Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
@@ -81,4 +88,4 @@ mesh = SubResource("PlaneMesh_uuwh7")
 shape = SubResource("BoxShape3D_ymu5c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 8, 6)
+transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)

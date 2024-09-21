@@ -128,12 +128,15 @@ public partial class MiddleOfDiscs : Node3D
 			{
 				targetPosition = Position + (ScreenPointToRay() - Position).Normalized() * 6.0f;
 				elementThrow = true;
-				GD.Print(targetPosition);
 			}
 		}
 	}
 	public void LinearInterpolate(Vector3 b, float t)
 	{
 		Position = Position.Lerp(b, t);
+	}
+	private void BodyEntered(Node3D body)
+	{
+		GD.Print("Body Entered");
 	}
 }
