@@ -30,7 +30,7 @@ radius = 0.37
 height = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2eo3k"]
-radius = 4.40802
+radius = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
@@ -45,6 +45,8 @@ size = Vector3(100, 0.1, 100)
 [node name="Node3D" type="Node3D"]
 
 [node name="Character" type="CharacterBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_1uxls")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
@@ -82,15 +84,12 @@ mesh = SubResource("SphereMesh_os8ty")
 mesh = SubResource("SphereMesh_th6i2")
 
 [node name="Area3D" type="Area3D" parent="Middle of discs"]
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Middle of discs/Area3D"]
 shape = SubResource("SphereShape3D_2eo3k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
-layers = 4
 mesh = SubResource("PlaneMesh_uuwh7")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
@@ -102,3 +101,5 @@ shape = SubResource("BoxShape3D_ymu5c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)
+
+[connection signal="body_entered" from="Middle of discs/Area3D" to="Middle of discs" method="BodyEntered"]
