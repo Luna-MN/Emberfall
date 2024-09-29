@@ -92,6 +92,7 @@ public partial class MiddleOfDiscs : Node3D
 		var rayE = rayO + cam.ProjectRayNormal(mousePos) * 2000;
 		var query = PhysicsRayQueryParameters3D.Create(rayO, rayE);
 		query.CollideWithAreas = true;
+		query.CollisionMask = 1 << 2;
 		// Get the raycast
 		rayA = spaceState.IntersectRay(query);
 		// Return the position of the raycast

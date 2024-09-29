@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=17 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
 [ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
@@ -28,6 +28,9 @@ height = 0.7
 material = ExtResource("3_xrjcv")
 radius = 0.37
 height = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2eo3k"]
+radius = 4.40802
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
@@ -78,11 +81,21 @@ mesh = SubResource("SphereMesh_os8ty")
 [node name="Ice" type="MeshInstance3D" parent="Middle of discs"]
 mesh = SubResource("SphereMesh_th6i2")
 
+[node name="Area3D" type="Area3D" parent="Middle of discs"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle of discs/Area3D"]
+shape = SubResource("SphereShape3D_2eo3k")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
+layers = 4
 mesh = SubResource("PlaneMesh_uuwh7")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("BoxShape3D_ymu5c")
