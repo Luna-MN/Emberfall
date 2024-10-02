@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=18 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
 [ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
@@ -6,13 +6,17 @@
 [ext_resource type="Material" uid="uid://bcmvx237h18fd" path="res://Flame.tres" id="4_ulcbs"]
 [ext_resource type="Material" uid="uid://ccb81foqt187v" path="res://Ice.tres" id="5_fp0sa"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vdkn"]
+albedo_color = Color(0.827451, 0.0196078, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a4q13"]
+material = SubResource("StandardMaterial3D_4vdkn")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ioo5y"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_128b0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xqkon"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_b252u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h7q67"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hq5e8"]
 material = ExtResource("3_xrjcv")
@@ -44,6 +48,18 @@ size = Vector3(100, 0.1, 100)
 
 [node name="Node3D" type="Node3D"]
 
+[node name="Area3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
+disable_mode = 1
+gravity_scale = 0.0
+
+[node name="cube (not important)" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("CapsuleMesh_a4q13")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_ioo5y")
+
 [node name="Character" type="CharacterBody3D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -58,15 +74,6 @@ mesh = SubResource("CapsuleMesh_xqkon")
 [node name="Camera3D" type="Camera3D" parent="Character"]
 transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 0, 5.75746, 6.35999)
 fov = 90.0
-
-[node name="cube (not important)" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
-mesh = SubResource("BoxMesh_b252u")
-
-[node name="Area3D" type="Area3D" parent="cube (not important)"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cube (not important)/Area3D"]
-shape = SubResource("BoxShape3D_h7q67")
 
 [node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
 script = ExtResource("2_q3p7w")
@@ -84,8 +91,10 @@ mesh = SubResource("SphereMesh_os8ty")
 mesh = SubResource("SphereMesh_th6i2")
 
 [node name="Area3D" type="Area3D" parent="Middle of discs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0307415, -0.0890741, 0.111673)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Middle of discs/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0188193, 0, 0)
 shape = SubResource("SphereShape3D_2eo3k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class MiddleOfDiscs : Node3D
 {
@@ -29,6 +30,8 @@ public partial class MiddleOfDiscs : Node3D
 	private PhysicsDirectSpaceState3D spaceState;
 	private Vector2 mousePos;
 	private Camera3D cam;
+	// ricochet
+	private List<Node3D> ricochet = new List<Node3D>();
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -139,5 +142,15 @@ public partial class MiddleOfDiscs : Node3D
 	private void BodyEntered(Node3D body)
 	{
 		GD.Print("Body Entered");
+	}
+	private void RicEnter(Node3D body)
+	{
+		GD.Print("Ric Entered");
+		ricochet.Add(body);
+	}
+	private void RicExit(Node3D body)
+	{
+		GD.Print("Ric Exited");
+		ricochet.Remove(body);
 	}
 }
