@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=19 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
 [ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
@@ -35,6 +35,9 @@ height = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2eo3k"]
 radius = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m1c87"]
+radius = 6.04725
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
@@ -96,6 +99,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0307415, -0.0890741, 0.1116
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Middle of discs/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0188193, 0, 0)
 shape = SubResource("SphereShape3D_2eo3k")
+
+[node name="Area3D2" type="Area3D" parent="Middle of discs"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle of discs/Area3D2"]
+shape = SubResource("SphereShape3D_m1c87")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)

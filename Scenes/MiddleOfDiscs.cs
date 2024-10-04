@@ -32,6 +32,7 @@ public partial class MiddleOfDiscs : Node3D
 	private Camera3D cam;
 	// ricochet
 	private List<Node3D> ricochet = new List<Node3D>();
+	private Node3D closestNode;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -142,6 +143,15 @@ public partial class MiddleOfDiscs : Node3D
 	private void BodyEntered(Node3D body)
 	{
 		GD.Print("Body Entered");
+		Vector3 closest = new Vector3(Mathf.Inf, Mathf.Inf, Mathf.Inf);
+		foreach (Node3D node in ricochet)
+		{
+			if (node.Position.DistanceTo(Position) < closest.DistanceTo(Position))
+			{
+				closest = node.Position;
+				closestNode = node;
+			}
+		}
 	}
 	private void RicEnter(Node3D body)
 	{
