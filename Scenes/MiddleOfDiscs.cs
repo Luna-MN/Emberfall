@@ -146,6 +146,7 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		Position = Position.Lerp(b, t);
 	}
+	// collision	
 	private void BodyEntered(Node3D body)
 	{
 		GD.Print("Body Entered");
@@ -165,6 +166,7 @@ public partial class MiddleOfDiscs : Node3D
 			maxRicochet--;
 		}
 	}
+	// ricochet
 	private void RicEnter(Node3D body)
 	{
 		GD.Print("Ric Entered");
