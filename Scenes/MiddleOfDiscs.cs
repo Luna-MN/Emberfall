@@ -79,9 +79,10 @@ public partial class MiddleOfDiscs : Node3D
 		// Move Ball1 towards the target position
 		LinearInterpolate(targetPosition, moveSpeed * delta);
 		// element throw check
-		if (Position == targetPosition)
+		if (Position.DistanceTo(targetPosition) < 0.1f)
 		{
 			elementThrow = false;
+			moveSpeed = 100.0f;
 			maxRicochet = 3;
 		}
 	}
@@ -136,6 +137,8 @@ public partial class MiddleOfDiscs : Node3D
 			{
 				targetPosition = Position + (ScreenPointToRay() - Position).Normalized() * 6.0f;
 				elementThrow = true;
+				// element throw speed
+				moveSpeed = 5.0f;
 			}
 		}
 	}
