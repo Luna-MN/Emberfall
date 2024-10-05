@@ -146,12 +146,13 @@ public partial class MiddleOfDiscs : Node3D
 		Vector3 closest = new Vector3(Mathf.Inf, Mathf.Inf, Mathf.Inf);
 		foreach (Node3D node in ricochet)
 		{
-			if (node.Position.DistanceTo(Position) < closest.DistanceTo(Position))
+			if (node.Position.DistanceTo(Position) < closest.DistanceTo(Position) && node != body)
 			{
 				closest = node.Position;
 				closestNode = node;
 			}
 		}
+		GD.Print(closestNode);
 	}
 	private void RicEnter(Node3D body)
 	{

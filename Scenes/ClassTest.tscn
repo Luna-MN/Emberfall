@@ -63,6 +63,18 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_ioo5y")
 
+[node name="Area3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84092, 0, 0)
+disable_mode = 1
+gravity_scale = 0.0
+
+[node name="cube (not important)" type="MeshInstance3D" parent="Area3D2"]
+mesh = SubResource("CapsuleMesh_a4q13")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("CapsuleShape3D_ioo5y")
+
 [node name="Character" type="CharacterBody3D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -120,3 +132,5 @@ shape = SubResource("BoxShape3D_ymu5c")
 transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)
 
 [connection signal="body_entered" from="Middle of discs/Area3D" to="Middle of discs" method="BodyEntered"]
+[connection signal="body_entered" from="Middle of discs/Area3D2" to="Middle of discs" method="RicEnter"]
+[connection signal="body_exited" from="Middle of discs/Area3D2" to="Middle of discs" method="RicExit"]
