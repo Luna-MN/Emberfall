@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://cu887c0e8660k"]
 
-[ext_resource type="Script" path="res://Scenes/Movement.cs" id="1_1uxls"]
-[ext_resource type="Script" path="res://Scenes/MiddleOfDiscs.cs" id="2_q3p7w"]
+[ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_astdx"]
+[ext_resource type="Script" path="res://Scripts/MiddleOfDiscs.cs" id="2_p5t2h"]
 [ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="3_xrjcv"]
 [ext_resource type="Material" uid="uid://bcmvx237h18fd" path="res://Flame.tres" id="4_ulcbs"]
 [ext_resource type="Material" uid="uid://ccb81foqt187v" path="res://Ice.tres" id="5_fp0sa"]
@@ -64,7 +64,7 @@ skeleton = NodePath("../..")
 shape = SubResource("CapsuleShape3D_ioo5y")
 
 [node name="Area3D2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84092, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84092, 0, -2.50547)
 disable_mode = 1
 gravity_scale = 0.0
 
@@ -76,7 +76,7 @@ skeleton = NodePath("../..")
 shape = SubResource("CapsuleShape3D_ioo5y")
 
 [node name="Area3D3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5231, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5231, 0, 0)
 disable_mode = 1
 gravity_scale = 0.0
 
@@ -89,7 +89,7 @@ shape = SubResource("CapsuleShape3D_ioo5y")
 [node name="Character" type="CharacterBody3D" parent="."]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_1uxls")
+script = ExtResource("1_astdx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
 shape = SubResource("CapsuleShape3D_128b0")
@@ -102,7 +102,7 @@ transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 
 fov = 90.0
 
 [node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
-script = ExtResource("2_q3p7w")
+script = ExtResource("2_p5t2h")
 Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
 character = NodePath("../Character")
 material = Array[Material]([ExtResource("4_ulcbs"), ExtResource("5_fp0sa"), ExtResource("3_xrjcv")])

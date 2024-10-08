@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://f3mpmyktk6va"]
+
+[ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="1_51qdj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kx4us"]
+material = ExtResource("1_51qdj")
+radius = 0.37
+height = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ngq5d"]
+radius = 0.369842
+
+[node name="Ice" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_kx4us")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ngq5d")
