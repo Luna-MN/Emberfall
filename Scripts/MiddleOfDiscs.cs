@@ -7,6 +7,9 @@ public partial class MiddleOfDiscs : Node3D
 	// balls
 	[Export]
 	public MeshInstance3D[] Balls;
+	[Export]
+	public PackedScene BallScene;
+	public Node3D[] CreatedBalls = new Node3D[3];
 
 	// character
 	[Export]
@@ -57,6 +60,13 @@ public partial class MiddleOfDiscs : Node3D
 			targetPosition = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
 		}
 		MoveBallsTowardsTarget((float)delta);
+		foreach (var Ball in CreatedBalls)
+		{
+			if (Ball != null)
+			{
+				Ball.Position = LinearInterpolate(character.Position, (float)(moveSpeed * delta), Ball.Position);
+			}
+		}
 	}
 
 	private void RotateBalls(float delta)
@@ -77,7 +87,7 @@ public partial class MiddleOfDiscs : Node3D
 	private void MoveBallsTowardsTarget(float delta)
 	{
 		// Move Ball1 towards the target position
-		LinearInterpolate(targetPosition, moveSpeed * delta);
+		Position = LinearInterpolate(targetPosition, moveSpeed * delta, Position);
 		// element throw check
 		if (Position.DistanceTo(targetPosition) < 0.1f)
 		{
@@ -123,6 +133,15 @@ public partial class MiddleOfDiscs : Node3D
 				}
 				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 			}
+			if (Input.IsKeyPressed(Key.E))
+			{
+				int i = 0;
+				foreach (var Ball in Balls)
+				{
+					CreatedBalls[i] = BallScene.Instantiate<Node3D>();
+					i++;
+				}
+			}
 		}
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
 		{
@@ -142,9 +161,10 @@ public partial class MiddleOfDiscs : Node3D
 			}
 		}
 	}
-	public void LinearInterpolate(Vector3 b, float t)
+	public Vector3 LinearInterpolate(Vector3 b, float t, Vector3 p)
 	{
-		Position = Position.Lerp(b, t);
+		p = p.Lerp(b, t);
+		return p;
 	}
 	// collision	
 	private void BodyEntered(Node3D body)
