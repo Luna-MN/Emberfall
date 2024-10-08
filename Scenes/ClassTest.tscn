@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=20 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_astdx"]
 [ext_resource type="Script" path="res://Scripts/MiddleOfDiscs.cs" id="2_p5t2h"]
+[ext_resource type="PackedScene" uid="uid://f3mpmyktk6va" path="res://Scenes/BALL.tscn" id="3_ndeoa"]
 [ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="3_xrjcv"]
 [ext_resource type="Material" uid="uid://bcmvx237h18fd" path="res://Flame.tres" id="4_ulcbs"]
 [ext_resource type="Material" uid="uid://ccb81foqt187v" path="res://Ice.tres" id="5_fp0sa"]
@@ -104,6 +105,7 @@ fov = 90.0
 [node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
 script = ExtResource("2_p5t2h")
 Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
+BallScene = ExtResource("3_ndeoa")
 character = NodePath("../Character")
 material = Array[Material]([ExtResource("4_ulcbs"), ExtResource("5_fp0sa"), ExtResource("3_xrjcv")])
 

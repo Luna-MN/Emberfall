@@ -60,12 +60,18 @@ public partial class MiddleOfDiscs : Node3D
 			targetPosition = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
 		}
 		MoveBallsTowardsTarget((float)delta);
-		foreach (var Ball in CreatedBalls)
+		for (int i = 0; i < 3; i++)
 		{
-			if (Ball != null)
+			if (CreatedBalls[i] != null)
 			{
-				Ball.Position = LinearInterpolate(character.Position, (float)(moveSpeed * delta), Ball.Position);
+				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(moveSpeed * delta), CreatedBalls[i].Position);
+				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f)
+				{
+					CreatedBalls[i].QueueFree();
+					CreatedBalls[i] = null;
+				}
 			}
+
 		}
 	}
 
@@ -139,6 +145,8 @@ public partial class MiddleOfDiscs : Node3D
 				foreach (var Ball in Balls)
 				{
 					CreatedBalls[i] = BallScene.Instantiate<Node3D>();
+					GetParent().AddChild(CreatedBalls[i]);
+					CreatedBalls[i].Position = Position;
 					i++;
 				}
 			}
