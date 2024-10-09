@@ -102,12 +102,14 @@ mesh = SubResource("CapsuleMesh_xqkon")
 transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 0, 5.75746, 6.35999)
 fov = 90.0
 
-[node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character")]
+[node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character", "CollisionShape", "RicochetArea")]
 script = ExtResource("2_p5t2h")
 Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
 BallScene = ExtResource("3_ndeoa")
 character = NodePath("../Character")
 material = Array[Material]([ExtResource("4_ulcbs"), ExtResource("5_fp0sa"), ExtResource("3_xrjcv")])
+CollisionShape = NodePath("Area3D/CollisionShape3D")
+RicochetArea = NodePath("Area3D2/CollisionShape3D")
 
 [node name="Lightning" type="MeshInstance3D" parent="Middle of discs"]
 mesh = SubResource("SphereMesh_hq5e8")

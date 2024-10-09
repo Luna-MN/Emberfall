@@ -10,7 +10,7 @@ public partial class MiddleOfDiscs : Node3D
 	[Export]
 	public PackedScene BallScene;
 	public Node3D[] CreatedBalls = new Node3D[3];
-
+	public Callable callable;
 	// character
 	[Export]
 	public CharacterBody3D character;
@@ -27,6 +27,9 @@ public partial class MiddleOfDiscs : Node3D
 	public bool pressed = false, elementThrow = false;
 	private Vector3 targetPosition;
 	private float moveSpeed = 10.0f;
+	[Export]
+	public CollisionShape3D CollisionShape;
+	public bool BallCollided = false;
 
 	// ray tracing
 	private Godot.Collections.Dictionary rayA;
@@ -38,6 +41,8 @@ public partial class MiddleOfDiscs : Node3D
 	private Node3D closestNode;
 	[Export]
 	public int maxRicochet = 3;
+	[Export]
+	public CollisionShape3D RicochetArea;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -65,13 +70,12 @@ public partial class MiddleOfDiscs : Node3D
 			if (CreatedBalls[i] != null)
 			{
 				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(moveSpeed * delta), CreatedBalls[i].Position);
-				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f)
+				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || BallCollided)
 				{
 					CreatedBalls[i].QueueFree();
 					CreatedBalls[i] = null;
 				}
 			}
-
 		}
 	}
 
@@ -145,6 +149,7 @@ public partial class MiddleOfDiscs : Node3D
 				foreach (var Ball in Balls)
 				{
 					CreatedBalls[i] = BallScene.Instantiate<Node3D>();
+					callable = new Callable(this, "BallCollide");
 					GetParent().AddChild(CreatedBalls[i]);
 					CreatedBalls[i].Position = Position;
 					i++;
@@ -204,5 +209,12 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		GD.Print("Ric Exited");
 		ricochet.Remove(body);
+	}
+	private void BallCollide(Node3D body)
+	{
+		if (body != CollisionShape && body != RicochetArea)
+		{
+			BallCollided = true;
+		}
 	}
 }
