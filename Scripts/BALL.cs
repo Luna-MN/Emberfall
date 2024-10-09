@@ -8,7 +8,8 @@ public partial class BALL : Area3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		middleOfDiscs = GetNode<MiddleOfDiscs>("/root/Node3D/MiddleOfDiscs");
+		middleOfDiscs = GetTree().Root.GetNode<MainCtest>("Main").middleOfDiscs;
+		GD.Print("MiddleOfDiscs: ", middleOfDiscs);
 		Connect("body_entered", middleOfDiscs.callable);
 
 	}

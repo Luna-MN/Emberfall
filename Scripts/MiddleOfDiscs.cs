@@ -212,7 +212,7 @@ public partial class MiddleOfDiscs : Node3D
 	}
 	private void BallCollide(Node3D body)
 	{
-		if (body != CollisionShape && body != RicochetArea)
+		if (body != CollisionShape && body != RicochetArea && body != character)
 		{
 			BallCollided = true;
 		}

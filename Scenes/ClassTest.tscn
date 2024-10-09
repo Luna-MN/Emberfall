@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cu887c0e8660k"]
+[gd_scene load_steps=21 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_astdx"]
+[ext_resource type="Script" path="res://Scenes/MainCtest.cs" id="1_bukod"]
 [ext_resource type="Script" path="res://Scripts/MiddleOfDiscs.cs" id="2_p5t2h"]
 [ext_resource type="PackedScene" uid="uid://f3mpmyktk6va" path="res://Scenes/BALL.tscn" id="3_ndeoa"]
 [ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="3_xrjcv"]
@@ -50,7 +51,9 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ymu5c"]
 size = Vector3(100, 0.1, 100)
 
-[node name="Node3D" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("middleOfDiscs")]
+script = ExtResource("1_bukod")
+middleOfDiscs = NodePath("Middle of discs")
 
 [node name="Area3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
