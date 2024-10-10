@@ -11,6 +11,7 @@ public partial class MiddleOfDiscs : Node3D
 	public PackedScene BallScene;
 	public Node3D[] CreatedBalls = new Node3D[3];
 	public Callable callable;
+	public float BallSpeed = 5.0f;
 	// character
 	[Export]
 	public CharacterBody3D character;
@@ -69,7 +70,7 @@ public partial class MiddleOfDiscs : Node3D
 		{
 			if (CreatedBalls[i] != null)
 			{
-				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(moveSpeed * delta), CreatedBalls[i].Position);
+				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(BallSpeed * delta), CreatedBalls[i].Position);
 				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || BallCollided)
 				{
 					CreatedBalls[i].QueueFree();
@@ -143,7 +144,7 @@ public partial class MiddleOfDiscs : Node3D
 				}
 				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 			}
-			if (Input.IsKeyPressed(Key.E) && keyEvent.Pressed && CreatedBalls[0] == null)
+			if (Input.IsKeyPressed(Key.E) && keyEvent.Pressed)
 			{
 				int i = 0;
 				foreach (var Ball in Balls)
