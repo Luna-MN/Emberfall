@@ -143,7 +143,7 @@ public partial class MiddleOfDiscs : Node3D
 				}
 				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 			}
-			if (Input.IsKeyPressed(Key.E))
+			if (Input.IsKeyPressed(Key.E) && keyEvent.Pressed && CreatedBalls[0] == null)
 			{
 				int i = 0;
 				foreach (var Ball in Balls)
