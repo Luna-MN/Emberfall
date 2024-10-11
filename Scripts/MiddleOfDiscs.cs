@@ -9,7 +9,7 @@ public partial class MiddleOfDiscs : Node3D
 	public MeshInstance3D[] Balls;
 	[Export]
 	public PackedScene BallScene;
-	public Node3D[] CreatedBalls = new Node3D[3];
+	public BALL[] CreatedBalls = new BALL[3];
 	public Callable callable;
 	public float BallSpeed = 5.0f;
 	// character
@@ -30,7 +30,6 @@ public partial class MiddleOfDiscs : Node3D
 	private float moveSpeed = 10.0f;
 	[Export]
 	public CollisionShape3D CollisionShape;
-	public bool BallCollided = false;
 
 	// ray tracing
 	private Godot.Collections.Dictionary rayA;
@@ -49,6 +48,7 @@ public partial class MiddleOfDiscs : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		callable = new Callable(this, "BallCollide");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,9 +71,10 @@ public partial class MiddleOfDiscs : Node3D
 			if (CreatedBalls[i] != null)
 			{
 				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(BallSpeed * delta), CreatedBalls[i].Position);
-				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || BallCollided)
+				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || CreatedBalls[i].BallCollided == true)
 				{
 					CreatedBalls[i].QueueFree();
+					GD.Print("Ball Deleted");
 					CreatedBalls[i] = null;
 				}
 			}
@@ -149,9 +150,9 @@ public partial class MiddleOfDiscs : Node3D
 				int i = 0;
 				foreach (var Ball in Balls)
 				{
-					CreatedBalls[i] = BallScene.Instantiate<Node3D>();
-					callable = new Callable(this, "BallCollide");
+					CreatedBalls[i] = BallScene.Instantiate<BALL>();// to do, spread balls
 					GetParent().AddChild(CreatedBalls[i]);
+					CreatedBalls[i].Mesh.SurfaceSetMaterial(0, material[matNum]);
 					CreatedBalls[i].Position = Position;
 					i++;
 				}
@@ -210,12 +211,5 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		GD.Print("Ric Exited");
 		ricochet.Remove(body);
-	}
-	private void BallCollide(Node3D body)
-	{
-		if (body != CollisionShape && body != RicochetArea && body != character)
-		{
-			BallCollided = true;
-		}
 	}
 }

@@ -13,9 +13,12 @@ radius = 0.369842
 
 [node name="Ice" type="MeshInstance3D"]
 mesh = SubResource("SphereMesh_kx4us")
+script = ExtResource("2_rrf0o")
 
 [node name="Area3D" type="Area3D" parent="."]
-script = ExtResource("2_rrf0o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_ngq5d")
+
+[connection signal="area_entered" from="Area3D" to="." method="BallCollide"]
+[connection signal="body_entered" from="Area3D" to="." method="BallCollide"]
