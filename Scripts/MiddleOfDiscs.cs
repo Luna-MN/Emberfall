@@ -11,9 +11,9 @@ public partial class MiddleOfDiscs : Node3D
 	public PackedScene BallScene;
 	public BALL[] CreatedBalls = new BALL[3];
 	public Callable callable;
-	public float BallSpeed = 1.0f;
+	public float BallSpeed = 5.0f;
 	[Export]
-	public Area3D FloorArea;
+	public Area3D FloorArea3D, RicochetArea3D, CollisionArea3D;
 
 	// character
 	[Export]

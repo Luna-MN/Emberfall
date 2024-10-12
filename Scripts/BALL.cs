@@ -19,7 +19,7 @@ public partial class BALL : MeshInstance3D
 	}
 	private void BallCollide(Node3D body)
 	{
-		if (body != middleOfDiscs.CollisionShape && body != middleOfDiscs.RicochetArea && body != middleOfDiscs.character)
+		if (body.Name.ToString().Contains("__"))
 		{
 			BallCollided = true;
 		}
@@ -27,7 +27,7 @@ public partial class BALL : MeshInstance3D
 	}
 	private void BallCollideArea3D(Area3D body)
 	{
-		if (body == middleOfDiscs.FloorArea)
+		if (body.Name.ToString().Contains("__"))
 		{
 			BallCollided = true;
 		}
