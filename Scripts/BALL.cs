@@ -23,7 +23,6 @@ public partial class BALL : MeshInstance3D
 		{
 			BallCollided = true;
 		}
-		GD.Print("Ball Collided");// area 3d is not treated the same as body, new function to handle collision with middle collider and ricochet area
 	}
 	private void BallCollideArea3D(Area3D body)
 	{

@@ -12,8 +12,6 @@ public partial class MiddleOfDiscs : Node3D
 	public BALL[] CreatedBalls = new BALL[3];
 	public Callable callable;
 	public float BallSpeed = 5.0f;
-	[Export]
-	public Area3D FloorArea3D, RicochetArea3D, CollisionArea3D;
 
 	// character
 	[Export]
@@ -153,10 +151,10 @@ public partial class MiddleOfDiscs : Node3D
 				int i = 0;
 				foreach (var Ball in Balls)
 				{
-					CreatedBalls[i] = BallScene.Instantiate<BALL>();// to do, spread balls
+					CreatedBalls[i] = BallScene.Instantiate<BALL>();
 					GetParent().AddChild(CreatedBalls[i]);
 					CreatedBalls[i].Mesh.SurfaceSetMaterial(0, material[matNum]);
-					CreatedBalls[i].Position = Position;
+					CreatedBalls[i].GlobalPosition = Balls[i].GlobalPosition;
 					i++;
 				}
 			}
