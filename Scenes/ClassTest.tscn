@@ -21,17 +21,17 @@ material = SubResource("StandardMaterial3D_4vdkn")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xqkon"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_hq5e8"]
-material = ExtResource("3_xrjcv")
+material = ExtResource("4_ulcbs")
 radius = 0.37
 height = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_os8ty"]
-material = ExtResource("3_xrjcv")
+material = ExtResource("5_fp0sa")
 radius = 0.37
 height = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_th6i2"]
-material = ExtResource("3_xrjcv")
+material = ExtResource("5_fp0sa")
 radius = 0.37
 height = 0.7
 

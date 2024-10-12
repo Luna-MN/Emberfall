@@ -50,6 +50,10 @@ public partial class MiddleOfDiscs : Node3D
 	public override void _Ready()
 	{
 		callable = new Callable(this, "BallCollide");
+		foreach (var Ball in Balls)
+		{
+			Ball.Mesh.SurfaceSetMaterial(0, material[matNum]);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,11 +75,11 @@ public partial class MiddleOfDiscs : Node3D
 		{
 			if (CreatedBalls[i] != null)
 			{
+				// Move the balls
 				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(BallSpeed * delta), CreatedBalls[i].Position);
 				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || CreatedBalls[i].BallCollided == true)
 				{
 					CreatedBalls[i].QueueFree();
-					GD.Print("Ball Deleted");
 					CreatedBalls[i] = null;
 				}
 			}
@@ -86,13 +90,10 @@ public partial class MiddleOfDiscs : Node3D
 	{
 		// Update the rotation angle
 		angle += rotationSpeed * delta;
-
 		// Rotate Ball1
 		Balls[0].Position = new Vector3(radius * Mathf.Cos(angle), 0, radius * Mathf.Sin(angle));
-
 		// Rotate Ball2
 		Balls[1].Position = new Vector3(radius * Mathf.Cos(angle + Mathf.Pi * 2 / 3), 0, radius * Mathf.Sin(angle + Mathf.Pi * 2 / 3));
-
 		// Rotate Ball3
 		Balls[2].Position = new Vector3(radius * Mathf.Cos(angle + 4 * Mathf.Pi / 3), 0, radius * Mathf.Sin(angle + 4 * Mathf.Pi / 3));
 	}
@@ -140,13 +141,15 @@ public partial class MiddleOfDiscs : Node3D
 			// element change
 			if (Input.IsKeyPressed(Key.F))
 			{
+				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
 				foreach (var Ball in Balls)
 				{
 					Ball.Mesh.SurfaceSetMaterial(0, material[matNum]);
 				}
-				matNum = (matNum + 1) <= 2 ? matNum + 1 : 0;
+
 			}
-			if (Input.IsKeyPressed(Key.E) && keyEvent.Pressed)
+			// Elemental Barrage
+			if (Input.IsKeyPressed(Key.E) && keyEvent.Pressed) // detecting every time a new key is pressed no just E 
 			{
 				int i = 0;
 				foreach (var Ball in Balls)
@@ -154,6 +157,7 @@ public partial class MiddleOfDiscs : Node3D
 					CreatedBalls[i] = BallScene.Instantiate<BALL>();
 					GetParent().AddChild(CreatedBalls[i]);
 					CreatedBalls[i].Mesh.SurfaceSetMaterial(0, material[matNum]);
+					GD.Print(matNum);
 					CreatedBalls[i].GlobalPosition = Balls[i].GlobalPosition;
 					i++;
 				}
@@ -185,7 +189,7 @@ public partial class MiddleOfDiscs : Node3D
 	// collision	
 	private void BodyEntered(Node3D body)
 	{
-		GD.Print("Body Entered");
+		// calculate closest node on body enter
 		Vector3 closest = new Vector3(Mathf.Inf, Mathf.Inf, Mathf.Inf);
 		if (maxRicochet > 0 && elementThrow == true)
 		{
@@ -197,7 +201,6 @@ public partial class MiddleOfDiscs : Node3D
 					closestNode = node;
 				}
 			}
-			GD.Print(closestNode);
 			targetPosition = closestNode.Position;
 			maxRicochet--;
 		}
@@ -205,12 +208,10 @@ public partial class MiddleOfDiscs : Node3D
 	// ricochet
 	private void RicEnter(Node3D body)
 	{
-		GD.Print("Ric Entered");
 		ricochet.Add(body);
 	}
 	private void RicExit(Node3D body)
 	{
-		GD.Print("Ric Exited");
 		ricochet.Remove(body);
 	}
 }
