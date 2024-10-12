@@ -58,9 +58,12 @@ middleOfDiscs = NodePath("Middle of discs")
 [node name="Area3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
 disable_mode = 1
+collision_layer = 9
+collision_mask = 9
 gravity_scale = 0.0
 
 [node name="cube (not important)" type="MeshInstance3D" parent="Area3D"]
+layers = 9
 mesh = SubResource("CapsuleMesh_a4q13")
 skeleton = NodePath("../..")
 
@@ -70,9 +73,12 @@ shape = SubResource("CapsuleShape3D_ioo5y")
 [node name="Area3D2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.84092, 0, -2.50547)
 disable_mode = 1
+collision_layer = 9
+collision_mask = 9
 gravity_scale = 0.0
 
 [node name="cube (not important)" type="MeshInstance3D" parent="Area3D2"]
+layers = 9
 mesh = SubResource("CapsuleMesh_a4q13")
 skeleton = NodePath("../..")
 
@@ -82,9 +88,12 @@ shape = SubResource("CapsuleShape3D_ioo5y")
 [node name="Area3D3" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5231, 0, 0)
 disable_mode = 1
+collision_layer = 9
+collision_mask = 9
 gravity_scale = 0.0
 
 [node name="cube (not important)" type="MeshInstance3D" parent="Area3D3"]
+layers = 9
 mesh = SubResource("CapsuleMesh_a4q13")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3"]
@@ -105,10 +114,11 @@ mesh = SubResource("CapsuleMesh_xqkon")
 transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 0, 5.75746, 6.35999)
 fov = 90.0
 
-[node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "character", "CollisionShape", "RicochetArea")]
+[node name="Middle of discs" type="Node3D" parent="." node_paths=PackedStringArray("Balls", "FloorArea", "character", "CollisionShape", "RicochetArea")]
 script = ExtResource("2_p5t2h")
 Balls = [NodePath("Lightning"), NodePath("Flame"), NodePath("Ice")]
 BallScene = ExtResource("3_ndeoa")
+FloorArea = NodePath("../MeshInstance3D/Area3D")
 character = NodePath("../Character")
 material = Array[Material]([ExtResource("4_ulcbs"), ExtResource("5_fp0sa"), ExtResource("3_xrjcv")])
 CollisionShape = NodePath("Area3D/CollisionShape3D")
@@ -137,12 +147,13 @@ shape = SubResource("SphereShape3D_m1c87")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
+layers = 9
 mesh = SubResource("PlaneMesh_uuwh7")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
 disable_mode = 2
-collision_layer = 5
-collision_mask = 5
+collision_layer = 13
+collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("BoxShape3D_ymu5c")
