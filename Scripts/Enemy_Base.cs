@@ -16,6 +16,11 @@ public partial class Enemy_Base : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (Input.IsKeyPressed(Key.P))
+		{
+			health = 0;
+			GD.Print("Health: " + health);
+		}
 		deathCheck();
 	}
 	public void deathCheck()
@@ -24,7 +29,9 @@ public partial class Enemy_Base : RigidBody3D
 		{
 			if (main.Class == ShadowClassTest.classes.shadow)
 			{
-				Shade.Instantiate();
+				Node3D SC = Shade.Instantiate<Node3D>();
+				GetParent().AddChild(SC);
+				SC.GlobalTransform = GlobalTransform;
 			}
 			QueueFree();
 		}
