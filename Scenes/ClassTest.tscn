@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://cu887c0e8660k"]
 
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_astdx"]
-[ext_resource type="Script" path="res://Scenes/MainCtest.cs" id="1_bukod"]
+[ext_resource type="Script" path="res://Scripts/MainCtest.cs" id="1_pwrno"]
 [ext_resource type="Script" path="res://Scripts/MiddleOfDiscs.cs" id="2_p5t2h"]
 [ext_resource type="PackedScene" uid="uid://f3mpmyktk6va" path="res://Scenes/BALL.tscn" id="3_ndeoa"]
 [ext_resource type="Material" uid="uid://bs2g4w4oc7qbt" path="res://Lightning.tres" id="3_xrjcv"]
@@ -41,18 +41,18 @@ radius = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_m1c87"]
 radius = 6.04725
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hpwr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uuwh7"]
-material = SubResource("StandardMaterial3D_s8mfr")
+material = SubResource("StandardMaterial3D_2hpwr")
 size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ymu5c"]
 size = Vector3(100, 0.1, 100)
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("middleOfDiscs")]
-script = ExtResource("1_bukod")
+script = ExtResource("1_pwrno")
 middleOfDiscs = NodePath("Middle of discs")
 
 [node name="Area3D__" type="RigidBody3D" parent="."]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmibp1eb8cfbs"]
+
+[ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_imqol"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
+albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oghmk"]
+material = SubResource("StandardMaterial3D_s8mfr")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqkjs"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_brdxb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qq7eh"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Area3D__2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
+disable_mode = 2
+collision_layer = 13
+collision_mask = 13
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D__2"]
+layers = 9
+mesh = SubResource("PlaneMesh_oghmk")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D__2"]
+shape = SubResource("BoxShape3D_iqkjs")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_imqol")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+shape = SubResource("CapsuleShape3D_brdxb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+mesh = SubResource("CapsuleMesh_qq7eh")
+
+[node name="Camera3D" type="Camera3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 0.749279, 0.662254, 0, -0.662254, 0.749279, 0, 5.75746, 6.35999)
+fov = 90.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)
