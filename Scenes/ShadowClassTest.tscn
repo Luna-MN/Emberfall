@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmibp1eb8cfbs"]
+[gd_scene load_steps=14 format=3 uid="uid://dmibp1eb8cfbs"]
 
 [ext_resource type="Script" path="res://Scripts/ShadowClassTest.cs" id="1_57lbx"]
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_imqol"]
 [ext_resource type="Script" path="res://Scripts/Enemy_Base.cs" id="3_865i2"]
 [ext_resource type="PackedScene" uid="uid://dw8b8smn4j6vw" path="res://Scenes/Shade.tscn" id="4_crx7m"]
+[ext_resource type="Script" path="res://Scripts/Shadow_attacks.cs" id="5_iloot"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
@@ -81,3 +82,6 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D__"]
 shape = SubResource("CapsuleShape3D_wck4c")
+
+[node name="Shadow_attacks" type="Node3D" parent="."]
+script = ExtResource("5_iloot")
