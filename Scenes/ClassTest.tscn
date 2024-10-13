@@ -8,11 +8,11 @@
 [ext_resource type="Material" uid="uid://bcmvx237h18fd" path="res://Flame.tres" id="4_ulcbs"]
 [ext_resource type="Material" uid="uid://ccb81foqt187v" path="res://Ice.tres" id="5_fp0sa"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vdkn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3xgb"]
 albedo_color = Color(0.827451, 0.0196078, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a4q13"]
-material = SubResource("StandardMaterial3D_4vdkn")
+material = SubResource("StandardMaterial3D_q3xgb")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ioo5y"]
 

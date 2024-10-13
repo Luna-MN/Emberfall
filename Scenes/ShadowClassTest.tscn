@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmibp1eb8cfbs"]
+[gd_scene load_steps=13 format=3 uid="uid://dmibp1eb8cfbs"]
 
+[ext_resource type="Script" path="res://Scripts/ShadowClassTest.cs" id="1_57lbx"]
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_imqol"]
-[ext_resource type="Script" path="res://Scenes/Enemy_Base.cs" id="2_a1g8a"]
+[ext_resource type="Script" path="res://Scripts/Enemy_Base.cs" id="3_865i2"]
+[ext_resource type="PackedScene" uid="uid://dw8b8smn4j6vw" path="res://Scenes/Shade.tscn" id="4_crx7m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8mfr"]
 albedo_color = Color(0.737255, 0.541176, 0.184314, 1)
@@ -17,15 +19,16 @@ size = Vector3(100, 0.1, 100)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_qq7eh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vdkn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jh0j"]
 albedo_color = Color(0.827451, 0.0196078, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rqh80"]
-material = SubResource("StandardMaterial3D_4vdkn")
+material = SubResource("StandardMaterial3D_6jh0j")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wck4c"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_57lbx")
 
 [node name="Area3D__2" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22019, 0)
@@ -61,13 +64,15 @@ fov = 90.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)
 
-[node name="Area3D__" type="RigidBody3D" parent="."]
+[node name="Area3D__" type="RigidBody3D" parent="." node_paths=PackedStringArray("main")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
 disable_mode = 1
 collision_layer = 9
 collision_mask = 9
 gravity_scale = 0.0
-script = ExtResource("2_a1g8a")
+script = ExtResource("3_865i2")
+Shade = ExtResource("4_crx7m")
+main = NodePath("..")
 
 [node name="cube (not important)" type="MeshInstance3D" parent="Area3D__"]
 layers = 9
