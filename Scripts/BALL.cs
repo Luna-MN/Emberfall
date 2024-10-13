@@ -16,6 +16,11 @@ public partial class BALL : MeshInstance3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		Position = middleOfDiscs.LinearInterpolate(middleOfDiscs.ScreenPointToRay(), (float)(middleOfDiscs.BallSpeed * delta), Position);
+		if (Position.DistanceTo(middleOfDiscs.ScreenPointToRay()) < 0.1f || BallCollided == true)
+		{
+			QueueFree();
+		}
 	}
 	private void BallCollide(Node3D body)
 	{

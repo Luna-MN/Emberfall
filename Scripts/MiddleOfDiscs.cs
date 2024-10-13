@@ -71,19 +71,6 @@ public partial class MiddleOfDiscs : Node3D
 			targetPosition = new Vector3(ScreenPointToRay().X, 0.5f, ScreenPointToRay().Z);
 		}
 		MoveBallsTowardsTarget((float)delta);
-		for (int i = 0; i < 3; i++)
-		{
-			if (CreatedBalls[i] != null)
-			{
-				// Move the balls
-				CreatedBalls[i].Position = LinearInterpolate(ScreenPointToRay(), (float)(BallSpeed * delta), CreatedBalls[i].Position);
-				if (CreatedBalls[i].Position.DistanceTo(ScreenPointToRay()) < 0.1f || CreatedBalls[i].BallCollided == true)
-				{
-					CreatedBalls[i].QueueFree();
-					CreatedBalls[i] = null;
-				}
-			}
-		}
 	}
 
 	private void RotateBalls(float delta)
