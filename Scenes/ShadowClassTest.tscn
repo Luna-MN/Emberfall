@@ -68,6 +68,40 @@ fov = 90.0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.631312, 0.775529, 0, -0.775529, 0.631312, 0, 8, 22.9967)
 
+[node name="Area3D__4" type="RigidBody3D" parent="." node_paths=PackedStringArray("main")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0248, 0, 0)
+disable_mode = 1
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 0.0
+script = ExtResource("3_865i2")
+Shade = ExtResource("4_crx7m")
+main = NodePath("..")
+
+[node name="cube (not important)" type="MeshInstance3D" parent="Area3D__4"]
+layers = 9
+mesh = SubResource("CapsuleMesh_rqh80")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D__4"]
+shape = SubResource("CapsuleShape3D_wck4c")
+
+[node name="Area3D__3" type="RigidBody3D" parent="." node_paths=PackedStringArray("main")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0248, 0, -6.36436)
+disable_mode = 1
+collision_layer = 9
+collision_mask = 9
+gravity_scale = 0.0
+script = ExtResource("3_865i2")
+Shade = ExtResource("4_crx7m")
+main = NodePath("..")
+
+[node name="cube (not important)" type="MeshInstance3D" parent="Area3D__3"]
+layers = 9
+mesh = SubResource("CapsuleMesh_rqh80")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D__3"]
+shape = SubResource("CapsuleShape3D_wck4c")
+
 [node name="Area3D__" type="RigidBody3D" parent="." node_paths=PackedStringArray("main")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.51242, 0, 0)
 disable_mode = 1

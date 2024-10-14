@@ -7,6 +7,7 @@ public partial class Enemy_Base : RigidBody3D
 	public PackedScene Shade;
 	[Export]
 	public ShadowClassTest main;
+
 	public float health = 100.0f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,7 +31,10 @@ public partial class Enemy_Base : RigidBody3D
 			if (main.Class == ShadowClassTest.classes.shadow)
 			{
 				Node3D SC = Shade.Instantiate<Node3D>();
+				SC.Name = "Shade" + main.shadowNum;
+				main.shadowNum++;
 				GetParent().AddChild(SC);
+				GD.Print(SC.Name);
 				SC.GlobalTransform = GlobalTransform;
 			}
 			QueueFree();
