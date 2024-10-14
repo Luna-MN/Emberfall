@@ -144,7 +144,7 @@ public partial class MiddleOfDiscs : Node3D
 					CreatedBalls[i] = BallScene.Instantiate<BALL>();
 					GetParent().AddChild(CreatedBalls[i]);
 					CreatedBalls[i].Mesh.SurfaceSetMaterial(0, material[matNum]);
-					GD.Print(matNum);
+					CreatedBalls[i].BallFinalLoc = ScreenPointToRay();
 					CreatedBalls[i].GlobalPosition = Balls[i].GlobalPosition;
 					i++;
 				}

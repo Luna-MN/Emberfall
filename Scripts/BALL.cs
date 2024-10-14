@@ -6,6 +6,7 @@ public partial class BALL : MeshInstance3D
 	public Callable callable;
 	public MiddleOfDiscs middleOfDiscs;
 	public bool BallCollided = false;
+	public Vector3 BallFinalLoc;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,8 +17,9 @@ public partial class BALL : MeshInstance3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position = middleOfDiscs.LinearInterpolate(middleOfDiscs.ScreenPointToRay(), (float)(middleOfDiscs.BallSpeed * delta), Position);
-		if (Position.DistanceTo(middleOfDiscs.ScreenPointToRay()) < 0.1f || BallCollided == true)
+
+		Position = middleOfDiscs.LinearInterpolate(BallFinalLoc, (float)(middleOfDiscs.BallSpeed * delta), Position);
+		if (Position.DistanceTo(BallFinalLoc) < 0.1f || BallCollided == true)
 		{
 			QueueFree();
 		}
