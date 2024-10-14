@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmibp1eb8cfbs"]
+[gd_scene load_steps=15 format=3 uid="uid://dmibp1eb8cfbs"]
 
 [ext_resource type="Script" path="res://Scripts/ShadowClassTest.cs" id="1_57lbx"]
 [ext_resource type="Script" path="res://Scripts/Movement.cs" id="1_imqol"]
@@ -27,6 +27,9 @@ albedo_color = Color(0.827451, 0.0196078, 0, 1)
 material = SubResource("StandardMaterial3D_6jh0j")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wck4c"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a3d45"]
+radius = 12.7947
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_57lbx")
@@ -83,5 +86,15 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D__"]
 shape = SubResource("CapsuleShape3D_wck4c")
 
-[node name="Shadow_attacks" type="Node3D" parent="."]
+[node name="Shadow_attacks" type="Node3D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("5_iloot")
+character = NodePath("../Character")
+
+[node name="Area3D" type="Area3D" parent="Shadow_attacks"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow_attacks/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00233269, 0, 0)
+shape = SubResource("SphereShape3D_a3d45")
+
+[connection signal="body_entered" from="Shadow_attacks/Area3D" to="Shadow_attacks" method="BodyEntered"]
+[connection signal="body_exited" from="Shadow_attacks/Area3D" to="Shadow_attacks" method="BodyExited"]

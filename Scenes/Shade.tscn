@@ -10,7 +10,7 @@ height = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kjnli"]
 
-[node name="Node3D" type="RigidBody3D"]
+[node name="Shade" type="RigidBody3D"]
 gravity_scale = 0.0
 
 [node name="cube (not important)" type="MeshInstance3D" parent="."]
